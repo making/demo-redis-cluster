@@ -1,9 +1,9 @@
 
 ## How to deploy to Tanzu Application Platform
 
-## Deploy Redis on Kubernetes
+## Deploy Redis Cluster on Kubernetes
 
-### Using Redis Cluster
+### Using Bitnami Helm Chart for Redis Cluster
 
 TBD
 
@@ -12,6 +12,9 @@ TBD
 #### Deploy VMware Tanzu GemFire for Kubernetes
 
 ```
+TANZUNET_USERNAME=...
+TANZUNET_PASSWORD=...
+
 imgpkg pull -b registry.tanzu.vmware.com/tanzu-gemfire-for-kubernetes/gemfire-for-kubernetes-carvel-bundle:2.1.0 -o workspace/tg4k8s_carvel_bundle
 
 cd workspace/tg4k8s_carvel_bundle
