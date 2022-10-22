@@ -4,7 +4,7 @@ curl "http://localhost:8080?key=foo" -H "Content-Type: text/plain" -d Hello
 curl "http://localhost:8080?key=foo"
 ```
 
-or go to http://localhost:8080/swagger-ui
+or go to http://localhost:8080/swagger-ui.html
 
 ## How to deploy to Tanzu Application Platform
 
