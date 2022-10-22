@@ -12,7 +12,34 @@ or go to http://localhost:8080/swagger-ui.html
 
 ### Using Bitnami Helm Chart for Redis Cluster
 
-TBD
+```yaml
+kubectl create ns demo
+PASSWORD=$(uuidgen | tr '[A-Z]' '[a-z]')
+cat <<EOF > secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: redis
+type: servicebinding.io/redis
+stringData:
+  type: redis
+  cluster.nodes: redis-cluster-0.redis-cluster-headless:6379,redis-cluster-1.redis-cluster-headless:6379,redis-cluster-2.redis-cluster-headless:6379,redis-cluster-3.redis-cluster-headless:6379,redis-cluster-4.redis-cluster-headless:6379,redis-cluster-5.redis-cluster-headless:6379
+  password: ${PASSWORD}
+  redis-password: ${PASSWORD}  
+---
+apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+kind: ResourceClaim
+metadata:
+  name: redis
+spec:
+  ref:
+    apiVersion: v1
+    kind: Secret
+    name: redis
+EOF
+
+helm template redis-cluster bitnami/redis-cluster --set existingSecret=redis -n demo | kubectl apply -f - -f secret.yaml -n demo --dry-run=client
+```
 
 ### Using VMware Tanzu GemFire for Redis App
 
@@ -77,7 +104,7 @@ metadata:
 type: servicebinding.io/redis
 stringData:
   type: redis
-  cluster.nodes: redis-server.demo.svc.cluster.local:6379
+  cluster.nodes: redis-server-0.redis-server.demo.svc.cluster.local:6379,redis-server-1.redis-server.demo.svc.cluster.local:6379
 ---
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1
 kind: ResourceClaim
