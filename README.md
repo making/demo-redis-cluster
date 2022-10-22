@@ -1,4 +1,11 @@
 
+```
+curl "http://localhost:8080?key=foo" -H "Content-Type: text/plain" -d Hello
+curl "http://localhost:8080?key=foo"
+```
+
+or go to http://localhost:8080/swagger-ui
+
 ## How to deploy to Tanzu Application Platform
 
 ## Deploy Redis Cluster on Kubernetes
@@ -101,6 +108,8 @@ tanzu apps workload apply demo-redis \
   --service-ref=redis=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:redis \
   --build-env BP_JVM_VERSION=17 \
   --label apps.tanzu.vmware.com/has-tests=true \
+  --label apis.apps.tanzu.vmware.com/register-api=true \
+  --param-yaml api_descriptor='{"description":"Demo Redis","location":{"path":"/v3/api-docs"},"owner":"demo","system":"dev","type":"openapi"}' \
   --annotation autoscaling.knative.dev/minScale=1 \
   -n demo \
   -y
