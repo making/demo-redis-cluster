@@ -38,7 +38,7 @@ spec:
     name: redis
 EOF
 
-helm template redis-cluster bitnami/redis-cluster --set existingSecret=redis -n demo | kubectl apply -f - -f secret.yaml -n demo --dry-run=client
+helm template redis-cluster bitnami/redis-cluster --set existingSecret=redis -n demo | kubectl apply -f - -f secret.yaml -n demo
 ```
 
 ### Using VMware Tanzu GemFire for Redis App
