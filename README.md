@@ -6,7 +6,7 @@ curl "http://localhost:8080?key=foo"
 
 or go to http://localhost:8080/swagger-ui.html
 
-## How to deploy to Tanzu Application Platform
+# How to deploy to Tanzu Application Platform
 
 ## Deploy Redis Cluster on Kubernetes
 
@@ -104,7 +104,7 @@ metadata:
 type: servicebinding.io/redis
 stringData:
   type: redis
-  cluster.nodes: redis-server-0.redis-server.demo.svc.cluster.local:6379,redis-server-1.redis-server.demo.svc.cluster.local:6379
+  cluster.nodes: redis-server-0.redis-server:6379,redis-server-1.redis-server:6379
 ---
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1
 kind: ResourceClaim
