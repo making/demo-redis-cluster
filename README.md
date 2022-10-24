@@ -58,7 +58,7 @@ kubectl create secret docker-registry image-pull-secret --namespace=gemfire-syst
 ytt -f operator.yaml -f certificates.yaml -f values.yaml -f functions.lib.yml -f namespace.yaml -f image-pull-secret.yaml | kbld -f- | kapp deploy -a gemfire-operator -f- -c -y
 ```
 
-### Create a VMware Tanzu GemFire for Redis Apps Cluster
+#### Create a VMware Tanzu GemFire for Redis Apps Cluster
 
 ```yaml
 cat <<EOF > redis.yaml
